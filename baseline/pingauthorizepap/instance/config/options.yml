@@ -7,6 +7,7 @@ core:
   Authentication.redirectUri: "https://sripaz-pingauthorizepap.ping-devops.com/idp-callback"
   Authentication.scope: "openid email profile"
   Authentication.oidcConfigurationEndpoint: "https://${PING_PF_ISSUER}/.well-known/openid-configuration"
+  Authentication.oidcTLSValidation: NONE
   # Use a JWT claim other than "sub" for the OIDC User ID. 
   #
   #  Authentication.oidcUserIdField: jwt_claim
