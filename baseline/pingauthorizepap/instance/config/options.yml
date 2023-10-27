@@ -2,6 +2,10 @@
 # using the --optionsFile option. Run `setup --help` for further
 # instructions.
 core:
+  Authentication.Protocol: "oidc"
+  Authentication.oidcClientId: "papclient"
+  Authentication.redirectUri: "https://sripaz-pingauthorizepap.ping-devops.com/idp-callback"
+  Authentication.scope: "openid email profile"
   # Use a JWT claim other than "sub" for the OIDC User ID. 
   #
   #  Authentication.oidcUserIdField: jwt_claim
@@ -105,15 +109,16 @@ ui:
   # Individually configure the OpenID Connect endpoints. This only applies when configuring the Policy Editor
   # to use OpenID Connect for authentication.
   # 
-  # authClientConfig:
-  #   authWellKnownEndpoints:
-  #     issuer: https://identity-server:<port_no>
-  #     authorizationEndpoint: https://identity-server:<port_no>/as/authorization.oauth2
-  #     jwksUri: https://identity-server:<port_no>/pf/JWKS
-  #     tokenEndpoint: https://identity-server:<port_no>/as/token.oauth2
-  #     userinfoEndpoint: https://identity-server:<port_no>/idp/userinfo.openid
-  #     endSessionEndpoint: https://identity-server:<port_no>/idp/startSLO.ping
-  #     introspectionEndpoint: https://identity-server:<port_no>/as/introspect.oauth2
+  authType: "oidc"
+  authClientConfig:
+    authWellKnownEndpoints:
+      issuer: https://${PING_PF_ISSUER}
+      authorizationEndpoint: https://${PING_PF_ISSUER}/as/authorization.oauth2
+      jwksUri: https://${PING_PF_ISSUER}/pf/JWKS
+      tokenEndpoint: https://${PING_PF_ISSUER}/as/token.oauth2
+      userinfoEndpoint: https://${PING_PF_ISSUER}/idp/userinfo.openid
+      endSessionEndpoint: https://${PING_PF_ISSUER}/idp/startSLO.ping
+      introspectionEndpoint: https://${PING_PF_ISSUER}/as/introspect.oauth2
 cache:
   # Configure an external attribute cache for use in the Trust Framework. Note that these configuration options
   # only apply to the Policy Editor and do not get exported with a deployment package. This means that to use
