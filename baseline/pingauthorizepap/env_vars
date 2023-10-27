@@ -1,0 +1,1 @@
+export PING_PF_ISSUER=${PING_PF_ISSUER:=pingfederate}
