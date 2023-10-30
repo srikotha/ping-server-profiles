@@ -1,1 +1,5 @@
 export PING_PF_ISSUER=${PING_PF_ISSUER:=pingfederate}
+export AWS_S3_BUCKET=${AWS_S3_BUCKET:=bucket}
+export AWS_S3_REGION=${AWS_S3_REGION:=region}
+export AWS_ACCESS_KEY=${AWS_ACCESS_KEY:=access}
+export AWS_SECRET_KEY=${AWS_SECRET_KEY:=secret}
