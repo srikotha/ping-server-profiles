@@ -1,0 +1,34 @@
+
+dsconfig create-deployment-package-store \
+    --store-name "AWS S3 Bucket Store"  \
+    --type s3  \
+    --set "poll-interval:30 s"  \
+    --set s3-bucket-name:${AWS_S3_BUCKET}  \
+    --set s3-bucket-prefix:PAZ  \
+    --set s3-server-endpoint:https://s3.amazonaws.com  \
+    --set s3-region-name:${AWS_S3_REGION}  \
+    --set s3-access-key-id:${AWS_ACCESS_KEY}  \
+    --set s3-secret-key:${AWS_SECRET_KEY} 
+
+dsconfig set-policy-decision-service-prop \
+    --set deployment-package-source-type:store  \
+    --set "deployment-package-store:AWS S3 Bucket Store"  \
+    --set trust-framework-version:v2 
+
+dsconfig create-access-token-validator \
+    --validator-name "MockNoLookup Token Validator"  \
+    --type mock  \
+    --set enabled:true  \
+    --set evaluation-order-index:100 
+
+dsconfig create-external-server \
+    --server-name "Meme Games API"  \
+    --type api  \
+    --set base-url:https://meme-game.com 
+
+dsconfig create-gateway-api-endpoint \
+    --endpoint-name "Meme Game - Games"  \
+    --set "access-token-validator:MockNoLookup Token Validator"  \
+    --set inbound-base-path:/meme-game/api/games  \
+    --set outbound-base-path:/api/v1/games  \
+    --set "api-server:Meme Games API" 
