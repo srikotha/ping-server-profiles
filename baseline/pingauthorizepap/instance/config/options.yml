@@ -83,12 +83,12 @@ deploymentPackageStores:
     type: s3bucket
     securityLevel: unsigned
     config:
-      bucket: store-bucket-name
-      prefix: store-prefix
+      bucket: ${AWS_S3_BUCKET}
+      prefix: PAZ
       endpoint: https://s3.amazonaws.com
-      region: us-east-2
-      accessKey: aws-access-key
-      secretKey: aws-secret-key
+      region: ${AWS_S3_REGION}
+      accessKey: ${AWS_ACCESS_KEY}
+      secretKey: ${AWS_SECRET_KEY}
   #
   # - name: Azure blob storage store
   #   description: Microsoft Azure blob storage store
